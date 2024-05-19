@@ -17,26 +17,27 @@ import io.github.eliseoorellana.LiterAlura.service.BookService;
 @RequestMapping("/books")
 public class BookController {
 
-     @Autowired
-    private BookService bookService;
+    //  @Autowired
+    // private BookService bookService;
 
-    @GetMapping("/search")
-    public List<BookDTO> searchBooks(@RequestParam String title) {
-        return bookService.searchBooksByTitle(title);
-    }
+    // @GetMapping("/search")
+    // public List<BookDTO> searchBooks(@RequestParam String title) {
+    //     return bookService.searchBookByTitle(title);
+        
+    // }
 
-    @PostMapping("/add")
-    public BookDTO addBook(@RequestBody BookDTO bookDTO) {
-        return bookService.saveBook(bookDTO);
-    }
+    // @PostMapping("/add")
+    // public BookDTO addBook(@RequestBody BookDTO bookDTO) {
+    //     return bookService.saveBook(bookDTO);
+    // }
 
-    @GetMapping
-    public List<BookDTO> listAllBooks() {
-        return bookService.listAllBooks();
-    }
+    // @GetMapping
+    // public List<BookDTO> listAllBooks() {
+    //     return bookService.listAllBooks();
+    // }
 
-    @GetMapping("/language")
-    public List<BookDTO> listBooksByLanguage(@RequestParam String language) {
-        return bookService.listBooksByLanguage(language);
-    }
+    // @GetMapping("/language")
+    // public List<BookDTO> listBooksByLanguage(@RequestParam String language) {
+    //     return bookService.listBooksByLanguage(language);
+    // }
 }

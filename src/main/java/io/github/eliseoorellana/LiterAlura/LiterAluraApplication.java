@@ -8,6 +8,12 @@ public class LiterAluraApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(LiterAluraApplication.class, args);
+		ConsoleMenu consoleMenu = new ConsoleMenu();
+        consoleMenu.showMenu();
 	}
 
+	
+
+
+	
 }
