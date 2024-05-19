@@ -1,4 +1,4 @@
-package model;
+package io.github.eliseoorellana.LiterAlura.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
