@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import io.github.eliseoorellana.LiterAlura.dto.BookDTO;
-import io.github.eliseoorellana.LiterAlura.response.BookResponse.BookDTO.Author;
 import io.github.eliseoorellana.LiterAlura.service.BookService;
 
 @Component
