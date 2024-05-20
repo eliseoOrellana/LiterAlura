@@ -13,4 +13,15 @@ Consumo de la API;
 Análisis de la Respuesta JSON;
 Inserción y consulta en la base de datos;
 Exibición de resultados a los usuarios;
+
+-------------------------------
+
+La API Gutendex es un catálogo de información de más de 70.000 libros presentes en Project Gutenberg (biblioteca en línea y gratuita).
+
+En este paso crucial, es fundamental comprender mejor la API de los libros, revisar su documentación y aprender cómo realizar las consultas en la API. En este desafío no es necesario obtener una clave de acceso, solo realizar consultas como se describe en el sitio web oficial.
+
+Asegúrate de seguir cuidadosamente las instrucciones proporcionadas por la API Gutendex.
+
+Enlace de la API Gutendex: [Gutendex API](https://gutendex.com/)
+Repositorio de la API Gutendex en GitHub: [gutendex GitHub Repository](https://github.com/garethbjohnson/gutendex)
  
