@@ -1,5 +1,8 @@
 package io.github.eliseoorellana.LiterAlura.dto;
 
+import java.sql.Date;
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -10,4 +13,8 @@ public class BookDTO {
     private String author;
     private String language;
     private int download_count;
+    private Date birthDate; 
+    private Date deathDate; 
+    private List<String> booksByAuthor; 
 }
+

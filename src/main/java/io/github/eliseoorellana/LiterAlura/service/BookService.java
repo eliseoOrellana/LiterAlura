@@ -85,9 +85,12 @@ public class BookService {
     }
 
     public List<String> listAuthorsAliveInYear(int year) {
-        // Implementar lógica basada en los datos disponibles de la API o de la base de datos
-        return List.of(); // Retorna una lista vacía temporalmente
-    }
+        return bookRepository.findAll().stream()
+        .map(Book::getAuthor)
+        .distinct()
+        .collect(Collectors.toList()); // Aquí estamos devolviendo todos los autores únicos, no filtramos por año de vida porque no tenemos esa información
+}
+
 
     public List<BookDTO> listBooksByLanguage(String language) {
         List<Book> books = bookRepository.findByLanguage(language);

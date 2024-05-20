@@ -2,11 +2,13 @@ package io.github.eliseoorellana.LiterAlura;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import io.github.eliseoorellana.LiterAlura.dto.BookDTO;
+import io.github.eliseoorellana.LiterAlura.response.BookResponse.BookDTO.Author;
 import io.github.eliseoorellana.LiterAlura.service.BookService;
 
 @Component
@@ -48,10 +50,33 @@ public class ConsoleMenu {
                     });
                     break;
                 case 3:
-                    // Implementa la funcionalidad para listar autores registrados
+                List<BookDTO> allBooks = bookService.listAllBooks(); // Renombrar a allBooks
+    if (allBooks.isEmpty()) {
+        System.out.println("No hay libros registrados.");
+    } else {
+        System.out.println("Detalles de los autores:");
+        allBooks.stream()
+                .collect(Collectors.groupingBy(BookDTO::getAuthor))
+                .forEach((author, booksByAuthor) -> {
+                    booksByAuthor.forEach(book -> {
+                        System.out.println("  Autor: " + book.getAuthor());
+                        System.out.println("  Título del libro: " + book.getTitle());
+                        System.out.println("  Fecha de nacimiento del autor: " + book.getBirthDate());
+                        System.out.println("  Fecha de fallecimiento del autor: " + book.getDeathDate());
+                    });
+                });
+    }
                     break;
                 case 4:
-                    // Implementa la funcionalidad para listar autores vivos en un determinado año
+                System.out.print("Ingrese el año: ");
+                    int year = scanner.nextInt();
+                    scanner.nextLine();  // Consume newline
+                    List<String> livingAuthors = bookService.listAuthorsAliveInYear(year);
+                    if (livingAuthors.isEmpty()) {
+                        System.out.println("No hay autores vivos en el año especificado.");
+                    } else {
+                        livingAuthors.forEach(author -> System.out.println("Autor: " + author));
+                    }
                     break;
                 case 5:
                     System.out.println("Ingrese el idioma (ES, EN, FR, PT):");
