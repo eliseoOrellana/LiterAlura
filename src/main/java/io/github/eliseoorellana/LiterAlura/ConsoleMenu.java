@@ -1,6 +1,7 @@
 package io.github.eliseoorellana.LiterAlura;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -50,33 +51,46 @@ public class ConsoleMenu {
                     });
                     break;
                 case 3:
-                List<BookDTO> allBooks = bookService.listAllBooks(); // Renombrar a allBooks
-    if (allBooks.isEmpty()) {
-        System.out.println("No hay libros registrados.");
-    } else {
-        System.out.println("Detalles de los autores:\n");
-        allBooks.stream()
-                .collect(Collectors.groupingBy(BookDTO::getAuthor))
-                .forEach((author, booksByAuthor) -> {
-                    booksByAuthor.forEach(book -> {
-                        System.out.println("  Autor: " + book.getAuthor());
-                        System.out.println("  Título del libro: " + book.getTitle());
-                        System.out.println("  Fecha de nacimiento del autor: " + book.getBirth_year());
-                        System.out.println("  Fecha de fallecimiento del autor: " + book.getDeath_year());
-                        System.out.println("-----------------------------------------------------------");
-                    });
-                });
-    }
+                    List<BookDTO> allBooks = bookService.listAllBooks(); // Renombrar a allBooks
+                    if (allBooks.isEmpty()) {
+                        System.out.println("No hay libros registrados.");
+                    } else {
+                        System.out.println("Detalles de los autores:\n");
+                        allBooks.stream()
+                                .collect(Collectors.groupingBy(BookDTO::getAuthor))
+                                .forEach((author, booksByAuthor) -> {
+                                    booksByAuthor.forEach(book -> {
+                                        System.out.println("  Autor: " + book.getAuthor());
+                                        System.out.println("  Título del libro: " + book.getTitle());
+                                        System.out.println("  Fecha de nacimiento del autor: " + book.getBirth_year());
+                                        System.out
+                                                .println("  Fecha de fallecimiento del autor: " + book.getDeath_year());
+                                        System.out
+                                                .println("-----------------------------------------------------------");
+                                    });
+                                });
+                    }
                     break;
                 case 4:
-                System.out.print("Ingrese el año: ");
+                    System.out.print("Ingrese el año: ");
                     int year = scanner.nextInt();
-                    scanner.nextLine();  // Consume newline
-                    List<String> livingAuthors = bookService.listAuthorsAliveInYear(year);
-                    if (livingAuthors.isEmpty()) {
+                    scanner.nextLine(); // Consume newline
+
+                    Map<String, List<BookDTO>> authorsDetailsMap = bookService.listAuthorsDetailsAliveInYear(year);
+
+                    if (authorsDetailsMap.isEmpty()) {
                         System.out.println("No hay autores vivos en el año especificado.");
                     } else {
-                        livingAuthors.forEach(author -> System.out.println("Autor: " + author));
+                        System.out.println("Detalles de los autores vivos en el año " + year + ":\n");
+                        authorsDetailsMap.forEach((author, booksByAuthor) -> {
+                            System.out.println("  Autor: " + author);
+                            booksByAuthor.forEach(book -> {
+                                System.out.println("  Título del libro: " + book.getTitle());
+                                System.out.println("  Fecha de nacimiento del autor: " + book.getBirth_year());
+                                System.out.println("  Fecha de fallecimiento del autor: " + book.getDeath_year());
+                                System.out.println("-----------------------------------------------------------");
+                            });
+                        });
                     }
                     break;
                 case 5:

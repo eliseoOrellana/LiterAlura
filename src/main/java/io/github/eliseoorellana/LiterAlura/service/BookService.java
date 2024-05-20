@@ -1,7 +1,10 @@
 package io.github.eliseoorellana.LiterAlura.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,11 +92,23 @@ public class BookService {
                 .collect(Collectors.toList());
     }
 
-    public List<String> listAuthorsAliveInYear(int year) {
-        return bookRepository.findAll().stream()
-        .map(Book::getAuthor)
-        .distinct()
-        .collect(Collectors.toList()); // Aquí estamos devolviendo todos los autores únicos, no filtramos por año de vida porque no tenemos esa información
+    public Map<String, List<BookDTO>> listAuthorsDetailsAliveInYear(int year) {
+    Map<String, List<BookDTO>> authorsDetailsMap = new HashMap<>();
+    List<BookDTO> books = bookRepository.findAll().stream()
+            .filter(book -> {
+                int birthYear = Integer.parseInt(book.getBirth_year());
+                int deathYear = Integer.parseInt(book.getDeath_year());
+                return birthYear <= year && (deathYear == 0 || deathYear >= year);
+            })
+            .map(bookMapper::toDTO)
+            .collect(Collectors.toList());
+
+    // Agrupar los libros por autor
+    for (BookDTO book : books) {
+        authorsDetailsMap.computeIfAbsent(book.getAuthor(), k -> new ArrayList<>()).add(book);
+    }
+
+    return authorsDetailsMap;
 }
 
 
