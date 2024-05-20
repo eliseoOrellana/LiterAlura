@@ -27,12 +27,16 @@ public class BookService {
      private final String API_URL = "https://gutendex.com/books?search=";
 
     public BookDTO searchBookByTitle(String title) {
-        if (bookRepository.existsByTitle(title)) {
-            System.out.println("El libro ya existe en la base de datos.");
-            return null;
-        }
+
+        List<Book> existingBooks = bookRepository.findByTitleContaining(title);
+    if (!existingBooks.isEmpty()) {
+        System.out.println("El libro ya existe en la base de datos.");
+        return null;
+        // return bookMapper.toDTO(existingBooks.get(0)); // Devolver el primer libro encontrado
+    }
+      
         RestTemplate restTemplate = new RestTemplate();
-        String url = API_URL + title;
+        String url = API_URL + title.replace(" ", "%20");
         BookResponse response = restTemplate.getForObject(url, BookResponse.class);
 
         if (response == null || response.getResults().isEmpty()) {
@@ -40,14 +44,26 @@ public class BookService {
             return null;
         }
 
+        // Obtener el primer libro de la lista de resultados
         BookResponse.BookDTO bookDTO = response.getResults().get(0);
-        Book book = new Book();
-        book.setTitle(bookDTO.getTitle());
-        book.setAuthor(bookDTO.getAuthors().get(0).getName());
-        book.setLanguage(bookDTO.getLanguages().get(0));
-        book.setDownloads(bookDTO.getDownloadCount());
 
+        // Crear y devolver un DTO con los datos del libro
+        BookDTO newBookDTO = new BookDTO();
+        newBookDTO.setTitle(bookDTO.getTitle());
+        newBookDTO.setAuthor(bookDTO.getAuthors().get(0).getName());
+        newBookDTO.setLanguage(bookDTO.getLanguages().get(0));
+        newBookDTO.setDownloads(bookDTO.getDownloadCount());
+
+        // Mostrar los detalles del libro por consola
+        System.out.println("Título: " + newBookDTO.getTitle());
+        System.out.println("Autor: " + newBookDTO.getAuthor());
+        System.out.println("Idioma: " + newBookDTO.getLanguage());
+        System.out.println("Descargas: " + newBookDTO.getDownloads());
+
+        // Guardar el libro en la base de datos
+        Book book = bookMapper.toEntity(newBookDTO);
         book = bookRepository.save(book);
+
         return bookMapper.toDTO(book);
     }
 
