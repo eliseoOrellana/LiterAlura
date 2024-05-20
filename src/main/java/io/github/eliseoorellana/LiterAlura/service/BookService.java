@@ -52,13 +52,13 @@ public class BookService {
         newBookDTO.setTitle(bookDTO.getTitle());
         newBookDTO.setAuthor(bookDTO.getAuthors().get(0).getName());
         newBookDTO.setLanguage(bookDTO.getLanguages().get(0));
-        newBookDTO.setDownloads(bookDTO.getDownloadCount());
+        newBookDTO.setDownload_count(bookDTO.getDownload_count());
 
         // Mostrar los detalles del libro por consola
         System.out.println("Título: " + newBookDTO.getTitle());
         System.out.println("Autor: " + newBookDTO.getAuthor());
         System.out.println("Idioma: " + newBookDTO.getLanguage());
-        System.out.println("Descargas: " + newBookDTO.getDownloads());
+        System.out.println("Descargas: " + newBookDTO.getDownload_count());
 
         // Guardar el libro en la base de datos
         Book book = bookMapper.toEntity(newBookDTO);

@@ -18,7 +18,7 @@ public class BookResponse {
         private String title;
         private List<Author> authors;
         private List<String> languages;
-        private int downloadCount;
+        private int download_count;
 
         @Data
         @JsonIgnoreProperties(ignoreUnknown = true)

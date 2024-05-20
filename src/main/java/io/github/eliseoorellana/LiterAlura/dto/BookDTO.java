@@ -9,5 +9,5 @@ public class BookDTO {
     private String title;
     private String author;
     private String language;
-    private int downloads;
+    private int download_count;
 }

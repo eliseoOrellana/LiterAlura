@@ -16,7 +16,7 @@ public class BookMapper {
         dto.setTitle(book.getTitle());
         dto.setAuthor(book.getAuthor());
         dto.setLanguage(book.getLanguage());
-        dto.setDownloads(book.getDownloads());
+        dto.setDownload_count(book.getDownload_count());
         return dto;
     }
 
@@ -29,7 +29,7 @@ public class BookMapper {
         book.setTitle(dto.getTitle());
         book.setAuthor(dto.getAuthor());
         book.setLanguage(dto.getLanguage());
-        book.setDownloads(dto.getDownloads());
+        book.setDownload_count(dto.getDownload_count());
         return book;
     }
 

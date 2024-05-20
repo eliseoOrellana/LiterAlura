@@ -43,7 +43,7 @@ public class ConsoleMenu {
                         System.out.println("Título: " + book.getTitle());
                         System.out.println("Autor: " + book.getAuthor());
                         System.out.println("Idioma: " + book.getLanguage());
-                        System.out.println("Descargas: " + book.getDownloads());
+                        System.out.println("Descargas: " + book.getDownload_count());
                         System.out.println("--------------------");
                     });
                     break;
@@ -61,7 +61,7 @@ public class ConsoleMenu {
                         System.out.println("Título: " + book.getTitle());
                         System.out.println("Autor: " + book.getAuthor());
                         System.out.println("Idioma: " + book.getLanguage());
-                        System.out.println("Descargas: " + book.getDownloads());
+                        System.out.println("Descargas: " + book.getDownload_count());
                         System.out.println("--------------------");
                     });
                     break;
