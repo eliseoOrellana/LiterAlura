@@ -53,6 +53,11 @@ public class BookService {
         newBookDTO.setAuthor(bookDTO.getAuthors().get(0).getName());
         newBookDTO.setLanguage(bookDTO.getLanguages().get(0));
         newBookDTO.setDownload_count(bookDTO.getDownload_count());
+        
+        if (bookDTO.getAuthors().size() > 0) {
+            newBookDTO.setBirth_year(bookDTO.getAuthors().get(0).getBirth_year());
+            newBookDTO.setDeath_year(bookDTO.getAuthors().get(0).getDeath_year());
+        }
 
         // Mostrar los detalles del libro por consola
         System.out.println("Título: " + newBookDTO.getTitle());

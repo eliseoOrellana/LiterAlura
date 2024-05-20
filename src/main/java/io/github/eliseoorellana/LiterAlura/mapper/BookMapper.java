@@ -17,6 +17,8 @@ public class BookMapper {
         dto.setAuthor(book.getAuthor());
         dto.setLanguage(book.getLanguage());
         dto.setDownload_count(book.getDownload_count());
+        dto.setBirth_year(book.getBirth_year());
+        dto.setDeath_year(book.getDeath_year());
         return dto;
     }
 
@@ -30,6 +32,8 @@ public class BookMapper {
         book.setAuthor(dto.getAuthor());
         book.setLanguage(dto.getLanguage());
         book.setDownload_count(dto.getDownload_count());
+        book.setBirth_year(dto.getBirth_year());
+        book.setDeath_year(dto.getDeath_year());
         return book;
     }
 

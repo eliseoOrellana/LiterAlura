@@ -54,15 +54,16 @@ public class ConsoleMenu {
     if (allBooks.isEmpty()) {
         System.out.println("No hay libros registrados.");
     } else {
-        System.out.println("Detalles de los autores:");
+        System.out.println("Detalles de los autores:\n");
         allBooks.stream()
                 .collect(Collectors.groupingBy(BookDTO::getAuthor))
                 .forEach((author, booksByAuthor) -> {
                     booksByAuthor.forEach(book -> {
                         System.out.println("  Autor: " + book.getAuthor());
                         System.out.println("  Título del libro: " + book.getTitle());
-                        System.out.println("  Fecha de nacimiento del autor: " + book.getBirthDate());
-                        System.out.println("  Fecha de fallecimiento del autor: " + book.getDeathDate());
+                        System.out.println("  Fecha de nacimiento del autor: " + book.getBirth_year());
+                        System.out.println("  Fecha de fallecimiento del autor: " + book.getDeath_year());
+                        System.out.println("-----------------------------------------------------------");
                     });
                 });
     }

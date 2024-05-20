@@ -13,8 +13,8 @@ public class BookDTO {
     private String author;
     private String language;
     private int download_count;
-    private Date birthDate; 
-    private Date deathDate; 
+    private String birth_year;
+    private String death_year;
     private List<String> booksByAuthor; 
 }
 

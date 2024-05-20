@@ -18,4 +18,6 @@ public class Book {
     private String author;
     private String language;
     private int download_count;
+    private String birth_year;
+    private String death_year;
 }

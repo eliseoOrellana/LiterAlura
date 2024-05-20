@@ -1,5 +1,6 @@
 package io.github.eliseoorellana.LiterAlura.response;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -19,14 +20,15 @@ public class BookResponse {
         private List<Author> authors;
         private List<String> languages;
         private int download_count;
+        private String birth_year;
+        private String death_year;
 
         @Data
         @JsonIgnoreProperties(ignoreUnknown = true)
         public static class Author {
             private String name;
-            private String birthYear;
-            private String deathYear;
+            private String birth_year;
+            private String death_year;
         }
     }
 }
-
