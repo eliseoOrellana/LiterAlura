@@ -14,7 +14,6 @@ Análisis de la Respuesta JSON;
 Inserción y consulta en la base de datos;
 Exibición de resultados a los usuarios;
 
-
 -------------------------------
 
 La API Gutendex es un catálogo de información de más de 70.000 libros presentes en Project Gutenberg (biblioteca en línea y gratuita).
